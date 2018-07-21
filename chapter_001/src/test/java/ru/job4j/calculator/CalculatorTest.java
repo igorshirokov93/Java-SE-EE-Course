@@ -20,25 +20,25 @@ public class CalculatorTest {
         Calculator calc = new Calculator();
         calc.subtract(1D, 1D);
         double result = calc.getResult();
-        double expected = 2D;
+        double expected = 0D;
         assertThat(result, is(expected));
     }
 	
 	@Test
     public void whenDivOneOnOneThenTwo() {
         Calculator calc = new Calculator();
-        calc.div(1D, 1D);
+        calc.div(8D, 2D);
         double result = calc.getResult();
-        double expected = 2D;
+        double expected = 4D;
         assertThat(result, is(expected));
     }
 	
 	@Test
     public void whenMultipleOneOnOneThenTwo() {
         Calculator calc = new Calculator();
-        calc.add(1D, 1D);
+        calc.multiple(2D, 3D);
         double result = calc.getResult();
-        double expected = 2D;
+        double expected = 6D;
         assertThat(result, is(expected));
     }
 }
