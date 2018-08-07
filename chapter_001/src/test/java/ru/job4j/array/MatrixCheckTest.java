@@ -36,18 +36,18 @@ public class MatrixCheckTest {
     }
 
     @Test
-    public void whenEvenData2X2ByTrueThenFalse() {
+    public void whenEvenData2X2ByTrueThenTrue() {
         MatrixCheck check = new MatrixCheck();
         boolean[][] input = new boolean[][]{
                 {false, false},
                 {false, false}
         };
         boolean result = check.mono(input);
-        assertThat(result, is( true));
+        assertThat(result, is(true));
     }
 
     @Test
-    public void whenEvenData2X2ByTrueThenTrue() {
+    public void whenData2X2ByTrueThenTrue() {
         MatrixCheck check = new MatrixCheck();
         boolean[][] input = new boolean[][]{
                 {true, false},
@@ -69,4 +69,17 @@ public void whenDataNotMonoByTrueAndEvenThenTrue() {
     boolean result = check.mono(input);
     assertThat(result, is(true));
 }
+
+    @Test
+    public void whenDataNotMonoTrueAndEvenThenFalse() {
+        MatrixCheck check = new MatrixCheck();
+        boolean[][] input = new boolean[][] {
+                {true, true, true, false},
+                {false, true, false, false},
+                {true, false, true, false},
+                {true, false, true, true}
+        };
+        boolean result = check.mono(input);
+        assertThat(result, is(false));
+    }
 }
