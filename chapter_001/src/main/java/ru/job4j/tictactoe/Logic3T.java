@@ -92,14 +92,16 @@ public class Logic3T {
      */
     public boolean hasGap() {
         boolean hasFree = false;
+        outterLoop:
         for (int i = 0; i < table.length; i++) {
             for (int j = 0; j < table.length; j++) {
                 if (!table[i][j].hasMarkO() && !table[i][j].hasMarkX()) {
                     hasFree = true;
-                    break;
+                    break outterLoop;
                 }
             }
         }
         return hasFree;
     }
 }
+
