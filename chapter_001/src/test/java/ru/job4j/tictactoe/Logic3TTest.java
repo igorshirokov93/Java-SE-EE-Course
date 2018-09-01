@@ -1,18 +1,13 @@
 package ru.job4j.tictactoe;
 
 import org.junit.Test;
+import ru.job4j.tictactoe.Figure3T;
+import ru.job4j.tictactoe.Logic3T;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
-/**
- * @author Igor Shirokov (mailto:freelancerigor@yandex.ru)
- * @version $Id$
- * @since 23.08.2018.
- */
-
-public class Logic3TTest {
-
-    @Test
+ public class Logic3TTest {
+     @Test
     public void whenHasXWinner() {
         Figure3T[][] table = {
                 {new Figure3T(true), new Figure3T(), new Figure3T()},
@@ -22,8 +17,7 @@ public class Logic3TTest {
         Logic3T login = new Logic3T(table);
         assertThat(login.isWinnerX(), is(true));
     }
-
-    @Test
+     @Test
     public void whenHasOWinner() {
         Figure3T[][] table = {
                 {new Figure3T(false), new Figure3T(), new Figure3T()},
@@ -33,8 +27,7 @@ public class Logic3TTest {
         Logic3T login = new Logic3T(table);
         assertThat(login.isWinnerO(), is(true));
     }
-
-    @Test
+     @Test
     public void whenHasGas() {
         Figure3T[][] table = {
                 {new Figure3T(true), new Figure3T(), new Figure3T()},
@@ -45,47 +38,37 @@ public class Logic3TTest {
         assertThat(login.hasGap(), is(true));
     }
 
-    @Test
-    public void whenHasNoWinner() {
-        Figure3T[][] table = {
-                {new Figure3T(false), new Figure3T(), new Figure3T()},
-                {new Figure3T(), new Figure3T(), new Figure3T()},
-                {new Figure3T(), new Figure3T(), new Figure3T(true)},
-        };
-        Logic3T login = new Logic3T(table);
-        assertThat(login.isWinnerX(), is(false));
-    }
-
-    @Test
-    public void whenHasXHorizontalWinner() {
-        Figure3T[][] table = {
-                {new Figure3T(), new Figure3T(), new Figure3T()},
-                {new Figure3T(true), new Figure3T(true), new Figure3T(true)},
-                {new Figure3T(), new Figure3T(), new Figure3T()},
-        };
-        Logic3T login = new Logic3T(table);
-        assertThat(login.isWinnerX(), is(true));
-    }
-
-    @Test
-    public void whenHasXVerticalWinner() {
-        Figure3T[][] table = {
-                {new Figure3T(), new Figure3T(true), new Figure3T()},
-                {new Figure3T(), new Figure3T(true), new Figure3T()},
-                {new Figure3T(), new Figure3T(true), new Figure3T()},
-        };
-        Logic3T login = new Logic3T(table);
-        assertThat(login.isWinnerX(), is(true));
-    }
-
-    @Test
-    public void whenHasXBackDiagonalWinner() {
-        Figure3T[][] table = {
-                {new Figure3T(), new Figure3T(), new Figure3T(true)},
-                {new Figure3T(), new Figure3T(true), new Figure3T()},
-                {new Figure3T(true), new Figure3T(), new Figure3T()},
-        };
-        Logic3T login = new Logic3T(table);
-        assertThat(login.isWinnerX(), is(true));
-    }
+@Test
+public void whenHasXHorizontalWinner() {
+    Figure3T[][] table = {
+            {new Figure3T(), new Figure3T(), new Figure3T()},
+            {new Figure3T(true), new Figure3T(true), new Figure3T(true)},
+            {new Figure3T(), new Figure3T(), new Figure3T()},
+    };
+    Logic3T login = new Logic3T(table);
+    assertThat(login.isWinnerX(), is(true));
 }
+
+@Test
+public void whenHasXVerticalWinner() {
+    Figure3T[][] table = {
+            {new Figure3T(), new Figure3T(true), new Figure3T()},
+            {new Figure3T(), new Figure3T(true), new Figure3T()},
+            {new Figure3T(), new Figure3T(true), new Figure3T()},
+    };
+    Logic3T login = new Logic3T(table);
+    assertThat(login.isWinnerX(), is(true));
+}
+
+@Test
+public void whenHasXBackDiagonalWinner() {
+    Figure3T[][] table = {
+            {new Figure3T(), new Figure3T(), new Figure3T(true)},
+            {new Figure3T(), new Figure3T(true), new Figure3T()},
+            {new Figure3T(true), new Figure3T(), new Figure3T()},
+    };
+    Logic3T login = new Logic3T(table);
+    assertThat(login.isWinnerX(), is(true));
+}
+
+} 

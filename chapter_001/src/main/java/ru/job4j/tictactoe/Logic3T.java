@@ -1,19 +1,13 @@
 package ru.job4j.tictactoe;
 
-import java.util.function.Predicate;
-
-/**
- * @author Igor Shirokov (mailto:freelancerigor@yandex.ru)
- * @version $Id$
- * @since 28.08.2018.
- */
+import ru.job4j.tictactoe.Figure3T;
 
 public class Logic3T {
     private final Figure3T[][] table;
-    public Logic3T(Figure3T[][] table) {
+     public Logic3T(Figure3T[][] table) {
         this.table = table;
     }
-    public boolean isWinnerX() {
+     public boolean isWinnerX() {
         boolean result = false;
         for (int index = 0; index < table.length - 1; index++) {
             if (table[index][index] == table[index + 1][index + 1]) {
@@ -35,7 +29,7 @@ public class Logic3T {
         }
         return result;
     }
-    public boolean isWinnerO() {
+     public boolean isWinnerO() {
         boolean result = false;
         for (int index = 0; index < table.length - 1; index++) {
             if (table[index][index] == table[index + 1][index + 1]) {
@@ -57,7 +51,7 @@ public class Logic3T {
         }
         return result;
     }
-    public boolean hasGap() {
+     public boolean hasGap() {
         boolean result = false;
         for (int i = 0; i < table.length; i++) {
             for (int j = 0; j < table[i].length; j++) {
