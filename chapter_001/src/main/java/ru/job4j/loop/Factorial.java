@@ -1,5 +1,4 @@
 package ru.job4j.loop;
-
 /**
  * @author Igor Shirokov (mailto:freelancerigor@yandex.ru)
  * @version $Id$

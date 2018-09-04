@@ -1,13 +1,9 @@
 package ru.job4j.tictactoe;
- 
-import java.util.function.Predicate; 
-
 /**
  * @author Igor Shirokov (mailto:freelancerigor@yandex.ru)
- * @version $Id$ 
+ * @version $Id$
  * @since 01.09.2018.
  */
-
 public class Logic3T {
     private final Figure3T[][] table;
     public Logic3T(Figure3T[][] table) {
@@ -15,23 +11,15 @@ public class Logic3T {
     }
     public boolean isWinnerX() {
         boolean result = true;
-        for (int index = 0; index < table.length - 1; index++) {
-            if (table[index][index] != table[index + 1][index + 1]) {
-                result = false;
-                break;
-            }
-            if (table[table.length - 1 - index][index] != table[table.length - 2 - index][index + 1]) {
+        for (int index = 0; index < table.length; index++) {
+            if (!table[index][index].hasMarkX()) {
                 result = false;
                 break;
             }
         }
-        for (int i = 0; i < table.length; i++) {
-            for (int j = 0; j < table.length; j++) {
-                if (table[i][0] != table[i][j]) {
-                    result = false;
-                    break;
-                }
-                if (table[0][j] != table[i][j]) {
+        if (!result) {
+            for (int index = 0; index < table.length; index++) {
+                if (!table[index][table.length - 1 - index].hasMarkX()) {
                     result = false;
                     break;
                 }
@@ -41,41 +29,39 @@ public class Logic3T {
     }
 
     public boolean isWinnerO() {
-        boolean result = true;
-        for (int index = 0; index < table.length - 1; index++) {
-            if (table[index][index] != table[index + 1][index + 1]) {
-                result = false;
-                break;
-            }
-            if (table[table.length - 1 - index][index] != table[table.length - 2 - index][index + 1]) {
-                result = false;
-                break;
-            }
+        boolean result = false;
+        if (this.table[0][0].hasMarkO() && this.table[1][1].hasMarkO() && this.table[2][2].hasMarkO()
+                || this.table[2][0].hasMarkO() && this.table[1][1].hasMarkO() && this.table[0][2].hasMarkO()) {
+            result = true;
         }
-        for (int i = 0; i < table.length; i++) {
-            for (int j = 0; j < table.length; j++) {
-                if (table[i][0] != table[i][j]) {
-                    result = false;
+        if (!result) {
+            for (int i = 0; i < this.table.length; i++) {
+                if (this.table[i][0].hasMarkO() && this.table[i][1].hasMarkO() && this.table[i][2].hasMarkO()) {
+                    result = true;
                     break;
                 }
-                if (table[0][j] != table[i][j]) {
-                    result = false;
+            }
+        }
+        if (!result) {
+            for (int i = 0; i < this.table.length; i++) {
+                if (this.table[0][i].hasMarkO() && this.table[1][i].hasMarkO() && this.table[2][i].hasMarkO()) {
+                    result = true;
                     break;
                 }
             }
         }
         return result;
     }
-
-
     public boolean hasGap() {
         boolean result = false;
-        for (int i = 0; i < table.length; i++) {
-            for (int j = 0; j < table[i].length; j++) {
-                if (table[i][j].hasMarkX() == table[i][j].hasMarkO()) {
-                    return true;
+        for (int i = 0; i < this.table.length; i++) {
+            for (int j = 0; j < this.table[i].length; j++) {
+                if (!this.table[i][j].hasMarkX() & !this.table[i][j].hasMarkO()) {
+                    result = true;
+                    break;
                 }
             }
+            break;
         }
         return result;
     }

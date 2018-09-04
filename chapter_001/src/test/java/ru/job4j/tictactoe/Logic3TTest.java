@@ -49,7 +49,7 @@ import static org.junit.Assert.assertThat;
                 {new Figure3T(), new Figure3T(), new Figure3T(true)},
         };
         Logic3T login = new Logic3T(table);
-        assertThat(login.isWinnerX(), is(true));
+        assertThat(login.isWinnerX(), is(false));
     }
      @Test
     public void whenHasXHorizontalWinner() {

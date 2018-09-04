@@ -1,11 +1,9 @@
 package ru.job4j.array;
-
  /**
  * @author Igor Shirokov (mailto:freelancerigor@yandex.ru)
  * @version $Id$
  * @since 27.08.2018.
  */
- 
 public class SortedArray {
      /**
      * @param first отсортированный массив.

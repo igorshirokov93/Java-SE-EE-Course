@@ -1,13 +1,10 @@
 package ru.job4j.array;
-
 import java.util.Arrays;
-
 /**
  * @author Igor Shirokov (mailto:freelancerigor@yandex.ru)
  * @version $Id$
  * @since 08.08.2018.
  */
-
 public class ArrayDuplicate {
     public String[] remove(String[] array) {
         int unique = array.length;

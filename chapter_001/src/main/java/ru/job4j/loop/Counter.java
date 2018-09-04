@@ -1,5 +1,4 @@
 package ru.job4j.loop;
-
 /**
  * @author Igor Shirokov (mailto:freelancerigor@yandex.ru)
  * @version $Id$
@@ -14,12 +13,12 @@ public class Counter {
      * @return Сумма четных чисел.
      */
     public int add(int start, int finish) {
-        int sum = 0;
+        int summa = 0;
         for (int i = start; i <= finish; i++) {
             if (i % 2 == 0) {
-                sum += i;
+                summa += i;
             }
         }
-        return sum;
+        return summa;
     }
 }
