@@ -19,12 +19,12 @@ import javafx.scene.shape.Line;
  /**
  * @author Igor Shirokov (mailto:freelancerigor@yandex.ru)
  * @version $Id$
- * @since 01.09.2018.
+ * @since 06.09.2018.
  */
  
  public class TicTacToe extends Application {
     private static final String JOB4J = "Крестики-нолики www.job4j.ru";
-    private final int size = 3;
+    private final int size = 6;
     private final Figure3T[][] cells = new Figure3T[size][size];
     private final Logic3T logic = new Logic3T(cells);
     private Figure3T buildRectangle(int x, int y, int size) {
@@ -56,7 +56,7 @@ import javafx.scene.shape.Line;
     private boolean checkState() {
         boolean gap = this.logic.hasGap();
         if (!gap) {
-            this.showAlert("Все поля запонены! Начните новую Игру!");
+            this.showAlert("Все поля заполнены! Начните новую Игру!");
         }
         return gap;
     }
