@@ -6,11 +6,9 @@ package ru.job4j.max;
  */
 public class Max {
     public int max(int first, int second) {
-        int temp = first > second ? first : second;
-        return temp;
+        return first > second ? first : second;
     }
     public int max(int first, int second, int third) {
-        int temp = this.max(this.max(first, second), third);
-        return temp;
+        return this.max(this.max(first, second), third);
     }
 }
