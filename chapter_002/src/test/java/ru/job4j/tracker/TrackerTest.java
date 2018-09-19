@@ -45,5 +45,7 @@ import static org.junit.Assert.assertThat;
     	tracker.add(second);
 		Item third = new Item("test3", "testDescription3", 12345L);
     	tracker.add(third);
+		tracker.delete(second.getId());
+		assertThat((tracker.getAll()[1]).getName(), is("test3"));
 	}
- } 
+ }

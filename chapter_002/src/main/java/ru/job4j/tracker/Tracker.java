@@ -4,7 +4,7 @@ import java.util.*;
 /**
  * @author Igor Shirokov (mailto:freelancerigor@yandex.ru)
  * @version $Id$
- * @since 17.09.2018.
+ * @since 19.09.2018.
  */
  
 public class Tracker {
@@ -31,16 +31,14 @@ public class Tracker {
         return String.valueOf(System.currentTimeMillis() + RN.nextInt());
     }
 	public Item[] getAll() {
-		Item[] result = new Item[this.position];
-		for (int i = 0; i != this.position; i++) {
-			result[i] = this.items[i];
-		}		
-		return result;
+		return Arrays.copyOf(this.items, this.position);
 	}
 	public void replace(String id, Item item) {
 	    for (int i = 0; i != this.position; i++) {
 			if (this.items[i].getId().equals(id)) {
+				item.setId(id);
 				this.items[i] = item;
+				break;
 			}
 		}
 	}
@@ -48,18 +46,19 @@ public class Tracker {
         for (int i = 0; i != this.position; i++) {
 			if (this.items[i].getId().equals(id)) {
 				System.arraycopy(this.items, i + 1, this.items, i, this.items.length - 1 - i);
+				this.position--;
+				break;
 			}
 		}
 	}
 	public Item[] findByName(String key) {
 		Item[] result = new Item[this.position];
-		int i = -1;
-		for (Item item : items) {
-			if (item != null && item.getName().equals(key)) {				
-				i++;
-				result[i] = item;
-			}
-		}		
-		return result;
-	}
+		int i = 0;
+   for (Item item : items) {
+      if (item != null && item.getName().equals(key)) {
+         result[i++] = item;
+      }
+   }     
+   return Arrays.copyOf(result, i);
+}
 } 

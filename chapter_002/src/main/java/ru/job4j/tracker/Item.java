@@ -3,14 +3,14 @@ package ru.job4j.tracker;
 /**
  * @author Igor Shirokov (mailto:freelancerigor@yandex.ru)
  * @version $Id$
- * @since 17.09.2018.
+ * @since 19.09.2018.
  */
 
  public class Item {
 	private String id;  
-	public String name;
-	public String description;
-	public long create;
+	private String name;
+	private String description;
+	private long create;
 	public Item() {
 	}
 	public Item(String name, String description, long create) {
