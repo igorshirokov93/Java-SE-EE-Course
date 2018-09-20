@@ -4,7 +4,7 @@ import java.util.*;
 /**
  * @author Igor Shirokov (mailto:freelancerigor@yandex.ru)
  * @version $Id$
- * @since 19.09.2018.
+ * @since 20.09.2018.
  */
  
 public class Tracker {
@@ -33,23 +33,29 @@ public class Tracker {
 	public Item[] getAll() {
 		return Arrays.copyOf(this.items, this.position);
 	}
-	public void replace(String id, Item item) {
+	public boolean replace(String id, Item item) { 
+	boolean res = false;
 	    for (int i = 0; i != this.position; i++) {
 			if (this.items[i].getId().equals(id)) {
 				item.setId(id);
-				this.items[i] = item;
+				this.items[i] = item; 
+				res = true;
 				break;
 			}
-		}
+		} 
+		return res;
 	}
-	public void delete(String id) {
+	public boolean delete(String id) { 
+		boolean res = false;
         for (int i = 0; i != this.position; i++) {
 			if (this.items[i].getId().equals(id)) {
 				System.arraycopy(this.items, i + 1, this.items, i, this.items.length - 1 - i);
 				this.position--;
+				res = true;
 				break;
 			}
-		}
+		} 
+		return res;
 	}
 	public Item[] findByName(String key) {
 		Item[] result = new Item[this.position];
