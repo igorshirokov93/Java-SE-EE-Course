@@ -21,7 +21,8 @@ public class StartUI {
 
     /**
      * Конструтор инициализирующий поля.
-     * @param input ввод данных.
+     *
+     * @param input   ввод данных.
      * @param tracker хранилище заявок.
      */
     public StartUI(Input input, Tracker tracker) {
@@ -64,11 +65,12 @@ public class StartUI {
 
     private void showAll() {
         System.out.println("------------ Список всех заявок -------------");
-        for (Item item: this.tracker.getAll()) {
-            System.out.println(item.getName() + " " + item.getDescription() + " " + item.getId());
+        for (Item item : this.tracker.getAll()) {
+            System.out.println(item.toString());
         }
         System.out.println("---------------------------------------------");
     }
+
     private void createItem() {
         System.out.println("------------ Добавление новой заявки --------------");
         String name = this.input.ask("Введите имя заявки : ");
@@ -77,6 +79,7 @@ public class StartUI {
         this.tracker.add(item);
         System.out.println("------------ Новая заявка с getId : " + item.getId() + "-----------");
     }
+
     private void editItem() {
         System.out.println("------------ Изменение поступившей заявки --------------");
         String id = this.input.ask("Введите id заявки : ");
@@ -87,6 +90,7 @@ public class StartUI {
         this.tracker.replace(id, item);
         item.setId(id);
     }
+
     private void deleteItem() {
         System.out.println("------------ Удаление заявки --------------");
         String id = this.input.ask("Введите id заявки : ");
@@ -96,18 +100,20 @@ public class StartUI {
             tracker.delete(id);
         }
     }
+
     private void findById() {
         String id = this.input.ask("Введите id заявки : ");
         if (this.tracker.findById(id) != null) {
-        System.out.println("------------ Заявка с id " + id + " : " + this.tracker.findById(id));
-		} else {
-             System.out.println("------------ Заявка с id " + id + " не найдена. Введите корректный id.");
-         }
-     } 
+            System.out.println("------------ Заявка с id " + id + " : " + this.tracker.findById(id));
+        } else {
+            System.out.println("------------ Заявка с id " + id + " не найдена. Введите корректный id.");
+        }
+    }
+
     private void findByName() {
         String name = this.input.ask("Введите имя заявки : ");
         Item[] items = tracker.findByName(name);
-        for (Item item: items) {
+        for (Item item : items) {
             if (item != null) {
                 System.out.println(" Имя заявки: " + item.getName()
                         + " Описание заявки: " + item.getDescription()
@@ -116,6 +122,7 @@ public class StartUI {
         }
         System.out.println("-------------------------------------------");
     }
+
     private void showMenu() {
         System.out.println("Меню.");
         System.out.println("0. Add new Item");
@@ -129,6 +136,7 @@ public class StartUI {
 
     /**
      * Запуск программы.
+     *
      * @param args
      */
     public static void main(String[] args) {
