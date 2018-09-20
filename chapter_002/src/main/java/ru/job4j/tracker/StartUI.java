@@ -76,7 +76,6 @@ public class StartUI {
         Item item = new Item(name, desc);
         this.tracker.add(item);
         System.out.println("------------ Новая заявка с getId : " + item.getId() + "-----------");
-        showAll();
     }
     private void editItem() {
         System.out.println("------------ Изменение поступившей заявки --------------");
@@ -87,7 +86,6 @@ public class StartUI {
         item.setId(id);
         this.tracker.replace(id, item);
         item.setId(id);
-        showAll();
     }
     private void deleteItem() {
         System.out.println("------------ Удаление заявки --------------");
@@ -97,14 +95,15 @@ public class StartUI {
         if (sure.equals("yes")) {
             tracker.delete(id);
         }
-        showAll();
     }
     private void findById() {
         String id = this.input.ask("Введите id заявки : ");
-        Item item = tracker.findById(id);
-        System.out.println("Имя заявки: " + item.getName() + " Описание заявки: " + item.getDescription());
-        System.out.println("-------------------------------------------");
-    }
+        if (this.tracker.findById(id) != null) {
+        System.out.println("------------ Заявка с id " + id + " : " + this.tracker.findById(id));
+		} else {
+             System.out.println("------------ Заявка с id " + id + " не найдена. Введите корректный id.");
+         }
+     } 
     private void findByName() {
         String name = this.input.ask("Введите имя заявки : ");
         Item[] items = tracker.findByName(name);
