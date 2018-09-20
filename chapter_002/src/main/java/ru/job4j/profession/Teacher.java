@@ -5,7 +5,7 @@ package ru.job4j.profession;
  * @since 10.09.2018.
  */
 public class Teacher {
-    public Lesson teach(Student student){
+    public Lesson teach(Student student) {
         return null;
     }
 }
