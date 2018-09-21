@@ -86,25 +86,28 @@ public class StartUI {
         String name = this.input.ask("Введите новое имя заявки : ");
         String desc = this.input.ask("Введите новое описание заявки : ");
         Item item = new Item(name, desc);
-        item.setId(id);
-        this.tracker.replace(id, item);
-        item.setId(id);
+        if (this.tracker.replace(id, item)) {
+            System.out.println("------------ Заявка обновлена : " + item.toString() + " -----------");
+        } else {
+            System.out.println("Item not found");
+        }
     }
 
     private void deleteItem() {
         System.out.println("------------ Удаление заявки --------------");
         String id = this.input.ask("Введите id заявки : ");
-        Item item = tracker.findById(id);
-        String sure = this.input.ask("Удалить заявку " + item.getName() + " " + item.getDescription() + " ? (yes/no) ");
-        if (sure.equals("yes")) {
-            tracker.delete(id);
+        if (this.tracker.delete(id)) {
+            System.out.println("------------ Заявка с id : " + id + " удалена-----------");
+        } else {
+            System.out.println("Заявки с данным id не существует.");
         }
     }
 
     private void findById() {
         String id = this.input.ask("Введите id заявки : ");
-        if (this.tracker.findById(id) != null) {
-            System.out.println("------------ Заявка с id " + id + " : " + this.tracker.findById(id));
+        Item item = this.tracker.findById(id);
+        if (item != null) {
+            System.out.println("------------ Заявка с id " + id + " : " + item);
         } else {
             System.out.println("------------ Заявка с id " + id + " не найдена. Введите корректный id.");
         }
