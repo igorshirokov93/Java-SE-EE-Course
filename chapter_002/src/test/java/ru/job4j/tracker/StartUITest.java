@@ -13,18 +13,18 @@ import static org.junit.Assert.assertThat;
 public class StartUITest {
     PrintStream stdout = System.out;
     ByteArrayOutputStream out = new ByteArrayOutputStream();
-     String menu = new StringBuilder().append("0. Добавление новой заявки")
-                                    .append(System.lineSeparator()) 
-									.append("1. Список всех заявок")
-                                    .append(System.lineSeparator()) 
-									.append("2. Изменение заявки")
-                                    .append(System.lineSeparator()) 
-									.append("3. Удаление заявки")
-                                    .append(System.lineSeparator()) 
-									.append("4. Поиск заявки по ID")
-                                    .append(System.lineSeparator()) 
-									.append("5. Поиск заявки по имени")
-                                    .append(System.lineSeparator()).toString();
+    String menu = new StringBuilder().append("0. Добавление новой заявки")
+            .append(System.lineSeparator())
+            .append("1. Список всех заявок")
+            .append(System.lineSeparator())
+            .append("2. Изменение заявки")
+            .append(System.lineSeparator())
+            .append("3. Удаление заявки")
+            .append(System.lineSeparator())
+            .append("4. Поиск заявки по ID")
+            .append(System.lineSeparator())
+            .append("5. Поиск заявки по имени")
+            .append(System.lineSeparator()).toString();
 
     @Before
     public void loadOutput() {
@@ -92,9 +92,9 @@ public class StartUITest {
                         .append(this.menu)
                         .append("------------ Список всех заявок -------------")
                         .append(System.lineSeparator())
-                        .append("test name desc " + item.getId())
+                        .append("|| id is: " + '\'' + item.getId() + '\'' + ", name is: " + '\'' + item.getName() + '\'' + "||")
                         .append(System.lineSeparator())
-                        .append("test name1 desc1 " + item1.getId())
+                        .append("|| id is: " + '\'' + item1.getId() + '\'' + ", name is: " + '\'' + item1.getName() + '\'' + "||")
                         .append(System.lineSeparator())
                         .append("---------------------------------------------")
                         .append(System.lineSeparator())
