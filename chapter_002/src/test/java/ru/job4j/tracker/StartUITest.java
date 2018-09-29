@@ -112,9 +112,7 @@ public class StartUITest {
         new StartUI(input, tracker).init();
         assertThat(new String(out.toByteArray()), is(new StringBuilder()
                         .append(this.menu)
-                        .append("Имя заявки: test name Описание заявки: desc")
-                        .append(System.lineSeparator())
-                        .append("-------------------------------------------")
+                        .append("------------ Заявка с id " + item.getId() + " : || id is: " + '\'' + item.getId() + '\'' + ", name is: " + '\'' + item.getName() + '\'' + "||")
                         .append(System.lineSeparator())
                         .toString()
                 )

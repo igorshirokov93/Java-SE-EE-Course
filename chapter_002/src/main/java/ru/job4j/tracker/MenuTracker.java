@@ -155,8 +155,11 @@ public class MenuTracker {
         public void execute(Input input, Tracker tracker) {
             String id = input.ask("Введите id заявки : ");
             Item item = tracker.findById(id);
-            System.out.println("Имя заявки: " + item.getName() + " Описание заявки: " + item.getDescription());
-            System.out.println("-------------------------------------------");
+            if (tracker.findById(id) != null) {
+                System.out.println("------------ Заявка с id " + id + " : " + tracker.findById(id));
+            } else {
+                System.out.println("------------ Заявка с id " + id + " не найдена. Введите корректный id.");
+            }
         }
     }
 
