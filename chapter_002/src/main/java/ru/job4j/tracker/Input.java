@@ -1,4 +1,6 @@
-package ru.job4j.tracker;
+package ru.job4j.tracker; 
+
+import java.util.List;
 
 /**
  * @author Igor Shirokov (mailto:freelancerigor@yandex.ru)
@@ -7,5 +9,6 @@ package ru.job4j.tracker;
  */
 
 public interface Input {
-    String ask(String question);
+    String ask(String question); 
+	int ask(String question, List<Integer> range);
 } 

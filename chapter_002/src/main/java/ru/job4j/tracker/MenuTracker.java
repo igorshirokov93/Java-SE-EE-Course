@@ -10,13 +10,7 @@ import java.util.List;
  */
 
 public class MenuTracker {
-    //    private static final int ADD = 0;
-//    private static final String SHOWALL = "1";
-//    private static final String EDIT = "2";
-//    private static final String DELETE = "3";
-//    private static final String FINDBYID = "4";
-//    private static final String FINDBYNAME = "5";
-//    private static final String EXIT = "6";
+    
     private Input input;
     private Tracker tracker;
     private List<UserAction> actions = new ArrayList<>();
@@ -37,7 +31,7 @@ public class MenuTracker {
      *
      * @return длину массива
      */
-    public int getActionsLentgh() {
+    public int getActionsLength() {
         return this.actions.size();
     }
 
