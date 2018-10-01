@@ -10,10 +10,12 @@ import java.util.List;
  */
 
 public class MenuTracker {
-    
+
     private Input input;
     private Tracker tracker;
     private List<UserAction> actions = new ArrayList<>();
+
+    List<Integer> range = new ArrayList<>();
 
     /**
      * Конструктор.
@@ -24,6 +26,15 @@ public class MenuTracker {
     public MenuTracker(Input input, Tracker tracker) {
         this.input = input;
         this.tracker = tracker;
+    }
+
+    /**
+     * Метод заполняет список номерами пунктов.
+     */
+    public void setRange() {
+        for (UserAction action : actions) {
+            range.add(action.key());
+        }
     }
 
     /**
@@ -186,10 +197,11 @@ public class MenuTracker {
             this.menuString = menuString;
         }
 
-        //        @Override
-//        public int key() {
-//            return this.menuKey;
-//        }
+        @Override
+        public int key() {
+            return this.menuKey;
+        }
+
         @Override
         public void execute(Input input, Tracker tracker) {
         }
