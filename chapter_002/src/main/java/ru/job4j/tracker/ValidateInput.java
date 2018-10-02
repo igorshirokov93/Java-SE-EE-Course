@@ -1,20 +1,50 @@
 package ru.job4j.tracker;
- import java.util.List; 
- 
- /**
+
+import java.util.List;
+
+/**
  * @author Igor Shirokov (mailto:freelancerigor@yandex.ru)
  * @version $Id$
- * @since 01.10.2018.
- */ 
- 
- public class ValidateInput extends ConsoleInput {
+ * @since 02.10.2018.
+ */
+
+public class ValidateInput implements Input {
+    private final Input input;
+
+    /**
+     * Конструктор
+     *
+     * @param input типа Input
+     */
+    public ValidateInput(final Input input) {
+        this.input = input;
+    }
+
+    /**
+     * Метод запрашивает пункт меню.
+     *
+     * @param question приглашение типа String
+     * @return Введенная строка типа String
+     */
+    @Override
+    public String ask(String question) {
+        return this.input.ask(question);
+    }
+
+    /**
+     * Метод обрабатывает ошибки при выборе пукта меню
+     *
+     * @param question приглашение типа String
+     * @param range    список возможных пунктов меню типа Integer
+     * @return пункт меню типа int
+     */
     @Override
     public int ask(String question, List<Integer> range) {
         boolean invalid = true;
         int value = -1;
         do {
             try {
-                value = super.ask(question, range);
+                value = this.input.ask(question, range);
                 invalid = false;
             } catch (NumberFormatException nfe) {
                 System.out.println("Пожалуйста введите цифру");
