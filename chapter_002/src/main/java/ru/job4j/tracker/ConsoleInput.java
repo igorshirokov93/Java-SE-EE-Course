@@ -14,9 +14,9 @@ public class ConsoleInput implements Input {
     public String ask(String question) {
         System.out.println(question);
         return scanner.nextLine();
-    } 
-	
-	@Override
+    }
+
+    @Override
     public int ask(String question, List<Integer> range) {
         int key = Integer.valueOf(this.ask(question));
         boolean exist = false;
@@ -26,11 +26,10 @@ public class ConsoleInput implements Input {
                 break;
             }
         }
-        if (exist) {
-            return key;
-        } else {
+        if (!exist) {
             throw new MenuOutException("Не в дипазоне меню");
         }
+        return key;
     }
-	
+
 } 
