@@ -12,6 +12,10 @@ public class StartUI {
 
     private final Input input;
     private final Tracker tracker;
+    /**
+     * Поле признак выхода из программы
+     */
+    private boolean working = true;
 
     /**
      * Конструтор инициализирующий поля.
@@ -24,14 +28,19 @@ public class StartUI {
         this.tracker = tracker;
     }
 
+    public void setWorking(boolean working) {
+        this.working = working;
+    }
+
+
     public void init() {
         MenuTracker menu = new MenuTracker(this.input, this.tracker);
-        menu.fillActions();
+        menu.fillActions(this);
         menu.setRange();
         do {
             menu.show();
             menu.select(input.ask("select:", menu.range));
-        } while (!"y".equals(this.input.ask("Exit?(y): ")));
+        } while (this.working);
     }
 
     /**

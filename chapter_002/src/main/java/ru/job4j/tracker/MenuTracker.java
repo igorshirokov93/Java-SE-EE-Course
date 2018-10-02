@@ -49,14 +49,14 @@ public class MenuTracker {
     /**
      * Метод заполняет массив.
      */
-    public void fillActions() {
+    public void fillActions(StartUI ui) {
         this.actions.add(new AddItem(0, ". Добавление новой заявки"));
         this.actions.add(new ShowItems(1, ". Список всех заявок"));
         this.actions.add(new EditItem(2, ". Изменение заявки"));
         this.actions.add(new DeleteItem(3, ". Удаление заявки"));
         this.actions.add(new FindItemById(4, ". Поиск заявки по ID"));
         this.actions.add(new FindItemsByName(5, ". Поиск заявки по имени"));
-//        this.actions.add(new ExitProgram(6, ". Выход"));
+        this.actions.add(new ExitProgram(6, ". Выход", ui));
     }
 
     /**
@@ -185,6 +185,36 @@ public class MenuTracker {
                 }
             }
             System.out.println("-------------------------------------------");
+        }
+    }
+
+    /**
+     * Внутренний класс выход из программы
+     */
+    public class ExitProgram extends MenuAction {
+        private final StartUI ui;
+
+        /**
+         * Конструктор
+         *
+         * @param menuKey    типа int
+         * @param menuString типа String
+         */
+        public ExitProgram(int menuKey, String menuString, StartUI ui) {
+            super(menuKey, menuString);
+            this.ui = ui;
+        }
+
+        /**
+         * Метод выход из программы
+         *
+         * @param input   типа Input
+         * @param tracker типа Tracker
+         */
+        @Override
+        public void execute(Input input, Tracker tracker) {
+            System.out.println("Выбран выход из программы. До свидания!");
+            this.ui.setWorking(false);
         }
     }
 
