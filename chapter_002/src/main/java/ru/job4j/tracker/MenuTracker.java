@@ -50,13 +50,13 @@ public class MenuTracker {
      * Метод заполняет массив.
      */
     public void fillActions(StartUI ui) {
-        this.actions.add(new AddItem(0, ". Добавление новой заявки"));
-        this.actions.add(new ShowItems(1, ". Список всех заявок"));
-        this.actions.add(new EditItem(2, ". Изменение заявки"));
-        this.actions.add(new DeleteItem(3, ". Удаление заявки"));
-        this.actions.add(new FindItemById(4, ". Поиск заявки по ID"));
-        this.actions.add(new FindItemsByName(5, ". Поиск заявки по имени"));
-        this.actions.add(new ExitProgram(6, ". Выход", ui));
+        this.actions.add(this.new AddItem(0, ". Добавление новой заявки"));
+        this.actions.add(this.new ShowItems(1, ". Список всех заявок"));
+        this.actions.add(this.new EditItem(2, ". Изменение заявки"));
+        this.actions.add(this.new DeleteItem(3, ". Удаление заявки"));
+        this.actions.add(this.new FindItemById(4, ". Поиск заявки по ID"));
+        this.actions.add(this.new FindItemsByName(5, ". Поиск заявки по имени"));
+        this.actions.add(this.new ExitProgram(6, ". Выход", ui));
     }
 
     /**
@@ -79,7 +79,7 @@ public class MenuTracker {
         }
     }
 
-    public class AddItem extends MenuAction {
+    public class AddItem extends BaseAction {
         public AddItem(int menuKey, String menuString) {
             super(menuKey, menuString);
         }
@@ -95,7 +95,7 @@ public class MenuTracker {
         }
     }
 
-    public class ShowItems extends MenuAction {
+    public class ShowItems extends BaseAction {
         public ShowItems(int menuKey, String menuString) {
             super(menuKey, menuString);
         }
@@ -110,7 +110,7 @@ public class MenuTracker {
         }
     }
 
-    public class EditItem extends MenuAction {
+    public class EditItem extends BaseAction {
         public EditItem(int menuKey, String menuString) {
             super(menuKey, menuString);
         }
@@ -130,7 +130,7 @@ public class MenuTracker {
         }
     }
 
-    public class DeleteItem extends MenuAction {
+    public class DeleteItem extends BaseAction {
         public DeleteItem(int menuKey, String menuString) {
             super(menuKey, menuString);
         }
@@ -151,7 +151,7 @@ public class MenuTracker {
         }
     }
 
-    public class FindItemById extends MenuAction {
+    public class FindItemById extends BaseAction {
         public FindItemById(int menuKey, String menuString) {
             super(menuKey, menuString);
         }
@@ -168,7 +168,7 @@ public class MenuTracker {
         }
     }
 
-    public class FindItemsByName extends MenuAction {
+    public class FindItemsByName extends BaseAction {
         public FindItemsByName(int menuKey, String menuString) {
             super(menuKey, menuString);
         }
@@ -191,7 +191,7 @@ public class MenuTracker {
     /**
      * Внутренний класс выход из программы
      */
-    public class ExitProgram extends MenuAction {
+    public class ExitProgram extends BaseAction {
         private final StartUI ui;
 
         /**
@@ -218,27 +218,4 @@ public class MenuTracker {
         }
     }
 
-    public class MenuAction implements UserAction {
-        private int menuKey;
-        private String menuString;
-
-        public MenuAction(int menuKey, String menuString) {
-            this.menuKey = menuKey;
-            this.menuString = menuString;
-        }
-
-        @Override
-        public int key() {
-            return this.menuKey;
-        }
-
-        @Override
-        public void execute(Input input, Tracker tracker) {
-        }
-
-        @Override
-        public String info() {
-            return this.menuKey + this.menuString;
-        }
-    }
 }
