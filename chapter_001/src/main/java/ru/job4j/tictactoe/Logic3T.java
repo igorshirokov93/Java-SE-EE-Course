@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 /**
  * @author Igor Shirokov (mailto:freelancerigor@yandex.ru)
  * @version $Id$
- * @since 04.10.2018.
+ * @since 07.10.2018.
  */
 public class Logic3T {
     private final Figure3T[][] table;
@@ -23,11 +23,8 @@ public class Logic3T {
                 break;
             }
         }
-        if (this.fillBy(Figure3T::hasMarkX, 0, 0, 1, 1)
-                || this.fillBy(Figure3T::hasMarkX, this.table.length - 1, 0, -1, 1)) {
-            result = true;
-        }
-        return result;
+         return this.fillBy(Figure3T::hasMarkX, 0, 0, 1, 1)
+                || this.fillBy(Figure3T::hasMarkX, this.table.length - 1, 0, -1, 1);
     }
 
     public boolean isWinnerO() {
@@ -39,11 +36,8 @@ public class Logic3T {
                 break;
             }
         }
-        if (this.fillBy(Figure3T::hasMarkO, 0, 0, 1, 1)
-                || this.fillBy(Figure3T::hasMarkO, this.table.length - 1, 0, -1, 1)) {
-            result = true;
-        }
-        return result;
+        return result || this.fillBy(Figure3T::hasMarkO, 0, 0, 1, 1)
+        || this.fillBy(Figure3T::hasMarkO, this.table.length - 1, 0, -1, 1);
     }
 
     public boolean hasGap() {

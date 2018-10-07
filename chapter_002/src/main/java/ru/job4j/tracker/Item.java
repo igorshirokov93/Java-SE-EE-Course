@@ -47,9 +47,9 @@ public class Item {
     }
 
     public String toString() {
-        return "|| " +
-                "id is: " + '\'' + id + '\'' +
-                ", name is: " + '\'' + name + '\'' +
-                "||";
+        return "|| "
+               + "id is: " + '\'' + id + '\''
+               + ", name is: " + '\'' + name + '\''
+               + "||";
     }
 }
