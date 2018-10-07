@@ -23,7 +23,7 @@ public class Logic3T {
                 break;
             }
         }
-         return this.fillBy(Figure3T::hasMarkX, 0, 0, 1, 1)
+         return result || this.fillBy(Figure3T::hasMarkX, 0, 0, 1, 1)
                 || this.fillBy(Figure3T::hasMarkX, this.table.length - 1, 0, -1, 1);
     }
 
