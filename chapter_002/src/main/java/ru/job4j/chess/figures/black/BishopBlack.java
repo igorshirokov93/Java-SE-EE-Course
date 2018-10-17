@@ -2,6 +2,11 @@ package ru.job4j.chess.figures.black;
 
 import ru.job4j.chess.figures.Cell;
 import ru.job4j.chess.figures.Figure;
+import ru.job4j.chess.figures.ImposibleMoveException;
+
+import java.util.Arrays;
+
+import static java.lang.Math.abs;
 
 /**
  * @author Igor Shirokov (freelancerigor@yandex.ru)
@@ -10,36 +15,59 @@ import ru.job4j.chess.figures.Figure;
  */
 
 public class BishopBlack implements Figure {
+    /**
+     * Поле номер позиции фигуры
+     */
     private final Cell position;
 
+    /**
+     * Конструктор
+     *
+     * @param position типа Cell
+     */
     public BishopBlack(final Cell position) {
         this.position = position;
     }
 
+    /**
+     * Метод возвращает позицию фигуры
+     *
+     * @return Cell
+     */
     @Override
     public Cell position() {
         return this.position;
     }
 
+    /**
+     * Метод возвращает массив позиций передвижения фигуры
+     *
+     * @param source типа Cell
+     * @param dest   типа Cell
+     * @return типа Cell[]
+     */
     @Override
-    public Cell[] way(Cell source, Cell dest) {
-        Cell[] steps = new Cell[0];
-        int deltaX = 2;
-        int deltaY = 2;
-        //если фигуре так можно ходить (не выходя за пределы массива) то записываем новое место назначения
-        for (int delts = 0; delts < 7; delts++) {
-            if ((source.y == dest.y + delts && source.x == dest.x - delts)
-                    || (source.y == dest.y + delts && source.x == dest.x + delts)
-                    || (source.y == dest.y - delts && source.x == dest.x - delts)
-                    || (source.y == dest.y - delts && source.x == dest.x + delts)
-                    ) {
-                steps = new Cell[]{dest};
-                break;
-            }
+    public Cell[] way(Cell source, Cell dest) throws ImposibleMoveException {
+        Cell[] steps = new Cell[8];
+        int deltaX, deltaY;
+        int absDeltaX = abs(dest.x - source.x);
+        if (absDeltaX != abs(dest.y - source.y)) {
+            throw new ImposibleMoveException("Слон так не ходит");
         }
-        return steps;
+        deltaY = (dest.y - source.y > 0) ? 1 : -1;
+        deltaX = (dest.x - source.x > 0) ? 1 : -1;
+        for (int i = 0; i < absDeltaX; i++) {
+            steps[i] = Cell.values()[8 * (source.x + deltaX * (i + 1)) + (source.y + deltaY * (i + 1))];
+        }
+        return Arrays.copyOf(steps, absDeltaX);
     }
 
+    /**
+     * Метод устанавливает новую позицию фигуры
+     *
+     * @param dest типа Cell
+     * @return типа Cell
+     */
     @Override
     public Figure copy(Cell dest) {
         return new BishopBlack(dest);
