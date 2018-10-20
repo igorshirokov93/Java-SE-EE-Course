@@ -48,7 +48,7 @@ public class BishopBlack implements Figure {
      */
     @Override
     public Cell[] way(Cell source, Cell dest) throws ImposibleMoveException {
-        Cell[] steps = new Cell[8];
+        Cell[] steps = new Cell[Math.abs(source.y - dest.y)];
         int deltaX, deltaY;
         int absDeltaX = abs(dest.x - source.x);
         if (absDeltaX != abs(dest.y - source.y)) {
