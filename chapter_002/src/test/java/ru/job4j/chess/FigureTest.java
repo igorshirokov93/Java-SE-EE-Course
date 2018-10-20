@@ -26,13 +26,21 @@ public class FigureTest {
         assertThat(bishopBlack.way(Cell.C8, Cell.E6), is(steps));
     }
 
+    @Test
+    public void Test() {
+        BishopBlack bishop = new BishopBlack(Cell.A1);
+        Cell[] actual = bishop.way(bishop.position(), Cell.H8);
+        Cell[] expected = {Cell.B2, Cell.C3, Cell.D4, Cell.E5, Cell.F6, Cell.G7, Cell.H8};
+        assertThat(actual, is(expected));
+    }
+
     /**
-     *  Проверка движения пешки
+     * Проверка движения пешки
      */
     @Test
     public void whenPawnBlackMove() throws ImposibleMoveException {
         PawnBlack pawnBlack = new PawnBlack(Cell.C7);
-        Cell[] steps = new Cell[] {Cell.C6, Cell.C5};
+        Cell[] steps = new Cell[]{Cell.C6, Cell.C5};
         assertThat(pawnBlack.way(Cell.C7, Cell.C5), is(steps));
     }
 }

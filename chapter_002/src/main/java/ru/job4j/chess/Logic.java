@@ -26,29 +26,24 @@ public class Logic {
      * @return результат перемещения типа boolean
      */
     public boolean move(Cell source, Cell dest) throws OccupiedWayException, FigureNotFoundException {
-        boolean rst = false;
-        try {
             int index = this.findBy(source);
-            Cell[] steps = this.figures[index].way(source, dest);
-            for (int i = 0; i < steps.length; i++) {
-                for (Figure figure : figures) {
-                    if (figure.position().equals(steps[i])) {
-                        throw new OccupiedWayException("Преграда!");
-                    }
-                }
+        if (index == -1) {
+            throw new FigureNotFoundException("Фигура не найдена!");
+        }
+        Cell[] steps = this.figures[index].way(source, dest);
+        for (Cell step : steps) {
+            if (this.findBy(source) != -1) {
+                throw new OccupiedWayException("Преграда!");
             }
+        }
+        boolean rst = false;
+        if (steps.length > 0) {
             this.figures[index] = this.figures[index].copy(dest);
             rst = true;
-
-        } catch (ImposibleMoveException ime) {
-            System.out.println("Эта фигура не может так ходить!");
-        } catch (OccupiedWayException owe) {
-            System.out.println("Клетки заняты!");
-        } catch (FigureNotFoundException fnfe) {
-            System.out.println("Фигура не найдена!");
         }
         return rst;
     }
+
 
     /**
      * Метод расставляет фигуры в начало
