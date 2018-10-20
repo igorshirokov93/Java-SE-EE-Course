@@ -26,13 +26,13 @@ public class Logic {
      * @return результат перемещения типа boolean
      */
     public boolean move(Cell source, Cell dest) throws OccupiedWayException, FigureNotFoundException {
-            int index = this.findBy(source);
+        int index = this.findBy(source);
         if (index == -1) {
             throw new FigureNotFoundException("Фигура не найдена!");
         }
         Cell[] steps = this.figures[index].way(source, dest);
         for (Cell step : steps) {
-            if (this.findBy(source) != -1) {
+            if (this.findBy(step) != -1) {
                 throw new OccupiedWayException("Преграда!");
             }
         }
@@ -68,9 +68,6 @@ public class Logic {
                 rst = index;
                 break;
             }
-        }
-        if (rst == -1) {
-            throw new FigureNotFoundException("Фигура не найдена!");
         }
         return rst;
     }
