@@ -27,7 +27,7 @@ public class FigureTest {
     }
 
     @Test
-    public void Test() {
+    public void testBishop() {
         BishopBlack bishop = new BishopBlack(Cell.A1);
         Cell[] actual = bishop.way(bishop.position(), Cell.H8);
         Cell[] expected = {Cell.B2, Cell.C3, Cell.D4, Cell.E5, Cell.F6, Cell.G7, Cell.H8};
