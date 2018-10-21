@@ -4,6 +4,7 @@ import org.junit.Test;
 import ru.job4j.chess.figures.*;
 import ru.job4j.chess.figures.ImposibleMoveException;
 import ru.job4j.chess.figures.black.*;
+import ru.job4j.chess.figures.white.KnightWhite;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -42,5 +43,72 @@ public class FigureTest {
         PawnBlack pawnBlack = new PawnBlack(Cell.C7);
         Cell[] steps = new Cell[]{Cell.C6, Cell.C5};
         assertThat(pawnBlack.way(Cell.C7, Cell.C5), is(steps));
+    }
+
+    /**
+     * Проверка движения ладьи
+     */
+    @Test
+    public void whenRookBlackMove() throws ImposibleMoveException {
+        RookBlack rookBlack = new RookBlack(Cell.A8);
+        Cell[] steps = new Cell[]{Cell.A7, Cell.A6};
+        assertThat(rookBlack.way(Cell.A8, Cell.A6), is(steps));
+    }
+
+    /**
+     * Вызов исключения в случае неправильного движения ладьи
+     */
+    @Test(expected = ImposibleMoveException.class)
+    public void whenRookBlackWrongMove() throws ImposibleMoveException {
+        RookBlack rookBlack = new RookBlack(Cell.A8);
+        Cell[] steps = new Cell[]{Cell.A7, Cell.A6, Cell.B6};
+        assertThat(rookBlack.way(Cell.A8, Cell.B6), is(steps));
+    } 
+	
+	/**
+     *  Проверка движения короля
+     */
+    @Test
+    public void whenKingBlackMove() throws ImposibleMoveException {
+        KingBlack kingBlack = new KingBlack(Cell.E8);
+        Cell[] steps = new Cell[] {Cell.F7};
+        assertThat(kingBlack.way(Cell.E8, Cell.F7), is(steps));
+    } 
+	
+	/**
+     *  Проверка движения ферьзя
+     */
+    @Test
+    public void whenQueenBlackMove() throws ImposibleMoveException {
+        QeenBlack queenBlack = new QeenBlack(Cell.D8);
+        Cell[] steps = new Cell[] {Cell.D7, Cell.D6, Cell.D5};
+        assertThat(queenBlack.way(Cell.D8, Cell.D5), is(steps));
+    } 
+	
+	/**
+     *  Проверка движения коня
+     */
+    @Test
+    public void whenKnightBlackMove() throws ImposibleMoveException {
+        KnightBlack knightBlack = new KnightBlack(Cell.B8);
+        Cell[] steps = new Cell[] {Cell.C6};
+        assertThat(knightBlack.way(Cell.B8, Cell.C6), is(steps));
+    }
+
+    @Test
+    public void whenKnightWhiteMove() throws ImposibleMoveException {
+        KnightWhite knightWhite = new KnightWhite(Cell.G1);
+        Cell[] steps = new Cell[] {Cell.H3};
+        assertThat(knightWhite.way(Cell.G1, Cell.H3), is(steps));
+    }
+
+    /**
+     *  Вызов исключения в случае неправильного движения коня
+     */
+    @Test (expected = ImposibleMoveException.class)
+    public void whenKnightBlackWrongMove() throws ImposibleMoveException {
+        KnightBlack knightBlack = new KnightBlack(Cell.B8);
+        Cell[] steps = new Cell[] {Cell.C7, Cell.D6};
+        assertThat(knightBlack.way(Cell.B8, Cell.D6), is(steps));
     }
 }
