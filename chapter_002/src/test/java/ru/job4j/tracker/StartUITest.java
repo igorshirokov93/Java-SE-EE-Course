@@ -75,6 +75,15 @@ public class StartUITest {
     }
 
     @Test
+    public void whenFindByNameThenTrackerHasItemWithSameDescription() {
+        Tracker tracker = new Tracker();
+        Item item = tracker.add(new Item("test name", "test description"));
+        Input input = new StubInput(new String[]{"5", item.getName(), "6"});
+        new StartUI(input, tracker).init();
+        assertThat(tracker.findByName(item.getName()).get(0).getDescription(), is("test description"));
+    }
+
+    @Test
     public void whenShowAllThenPrintItemstoScreen() {
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("test name", "desc"));
