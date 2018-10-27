@@ -3,6 +3,9 @@ package ru.job4j.list;
 import java.util.List;
 import java.util.ListIterator;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /**
  * @author Igor Shirokov (freelancerigor@yandex.ru)
  * @version $Id$
@@ -24,4 +27,15 @@ public class ConvertList2Array {
         }
         return array;
     }
+
+    public List<Integer> convert(List<int[]> list) {
+        List<Integer> result = new ArrayList<>();
+        for (int[] array : list) {
+            for (int value : array) {
+                result.add(value);
+            }
+        }
+        return result;
+    }
+
 } 
