@@ -5,23 +5,28 @@ import java.util.*;
 /**
  * @author Igor Shirokov (mailto:freelancerigor@yandex.ru)
  * @version $Id$
- * @since 20.09.2018.
+ * @since 27.10.2018.
  */
 
 public class Tracker {
-    private final Item[] items = new Item[100];
-    private int position = 0;
+    /**
+     * Поле список заявок
+     */
+    private final ArrayList<Item> items = new ArrayList<>();
+    /**
+     * Поле случайного числа для генерации id
+     */
     private static final Random RN = new Random();
 
     public Item add(Item item) {
         item.setId(this.generateId());
-        this.items[this.position++] = item;
+        this.items.add(item);
         return item;
     }
 
     protected Item findById(String id) {
         Item result = null;
-        for (Item item : items) {
+        for (Item item : this.items) {
             if (item != null && item.getId().equals(id)) {
                 result = item;
                 break;
@@ -34,16 +39,16 @@ public class Tracker {
         return String.valueOf(System.currentTimeMillis() + RN.nextInt());
     }
 
-    public Item[] getAll() {
-        return Arrays.copyOf(this.items, this.position);
+    public ArrayList<Item> getAll() {
+        return this.items;
     }
 
     public boolean replace(String id, Item item) {
         boolean res = false;
-        for (int i = 0; i != this.position; i++) {
-            if (this.items[i].getId().equals(id)) {
+        for (int i = 0; i < this.items.size(); i++) {
+            if (this.items.get(i) != null && this.items.get(i).getId().equals(id)) {
                 item.setId(id);
-                this.items[i] = item;
+                this.items.set(i, item);
                 res = true;
                 break;
             }
@@ -53,10 +58,10 @@ public class Tracker {
 
     public boolean delete(String id) {
         boolean res = false;
-        for (int i = 0; i != this.position; i++) {
-            if (this.items[i].getId().equals(id)) {
-                System.arraycopy(this.items, i + 1, this.items, i, this.items.length - 1 - i);
-                this.position--;
+        ListIterator<Item> current = this.items.listIterator();
+        while (current.hasNext()) {
+            if (current.next().getId().equals(id)) {
+                current.remove();
                 res = true;
                 break;
             }
@@ -64,14 +69,16 @@ public class Tracker {
         return res;
     }
 
-    public Item[] findByName(String key) {
-        Item[] result = new Item[this.position];
-        int i = 0;
-        for (Item item : items) {
-            if (item != null && item.getName().equals(key)) {
-                result[i++] = item;
+    public ArrayList<Item> findByName(String key) {
+        ListIterator<Item> current = this.items.listIterator();
+        ArrayList<Item> result = new ArrayList<>();
+        Item it;
+        while (current.hasNext()) {
+            it = current.next();
+            if (it.getName().equals(key)) {
+                result.add(it);
             }
         }
-        return Arrays.copyOf(result, i);
+        return result;
     }
 } 

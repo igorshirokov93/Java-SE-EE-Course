@@ -23,8 +23,8 @@ public class StartUITest {
             .append(System.lineSeparator())
             .append("4. Поиск заявки по ID")
             .append(System.lineSeparator())
-            .append("5. Поиск заявки по имени") 
-			.append(System.lineSeparator())
+            .append("5. Поиск заявки по имени")
+            .append(System.lineSeparator())
             .append("6. Выход")
             .append(System.lineSeparator()).toString();
 
@@ -43,7 +43,7 @@ public class StartUITest {
         Tracker tracker = new Tracker();
         Input input = new StubInput(new String[]{"0", "test name", "desc", "6"});
         new StartUI(input, tracker).init();
-        assertThat(tracker.getAll()[0].getName(), is("test name"));
+        assertThat(tracker.getAll().get(0).getName(), is("test name"));
     }
 
     @Test
@@ -62,7 +62,7 @@ public class StartUITest {
         Item item1 = tracker.add(new Item("test name1", "desc1"));
         Input input = new StubInput(new String[]{"3", item.getId(), "yes", "6"});
         new StartUI(input, tracker).init();
-        assertThat(tracker.getAll()[0].getName(), is("test name1"));
+        assertThat(tracker.getAll().get(0).getName(), is("test name1"));
     }
 
     @Test
@@ -72,15 +72,6 @@ public class StartUITest {
         Input input = new StubInput(new String[]{"4", item.getId(), "6"});
         new StartUI(input, tracker).init();
         assertThat(tracker.findById(item.getId()).getName(), is("test name"));
-    }
-
-    @Test
-    public void whenFindByNameThenTrackerHasItemWithSameDescription() {
-        Tracker tracker = new Tracker();
-        Item item = tracker.add(new Item("test name", "test description"));
-        Input input = new StubInput(new String[]{"5", item.getName(), "6"});
-        new StartUI(input, tracker).init();
-        assertThat(tracker.findByName(item.getName())[0].getDescription(), is("test description"));
     }
 
     @Test

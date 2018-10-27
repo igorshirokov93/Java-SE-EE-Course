@@ -1,5 +1,7 @@
 package ru.job4j.tracker;
 
+import java.util.ArrayList;
+
 /**
  * @author Igor Shirokov (mailto:freelancerigor@yandex.ru)
  * @version $Id$
@@ -48,8 +50,8 @@ public class Item {
 
     public String toString() {
         return "|| "
-               + "id is: " + '\'' + id + '\''
-               + ", name is: " + '\'' + name + '\''
-               + "||";
+                + "id is: " + '\'' + id + '\''
+                + ", name is: " + '\'' + name + '\''
+                + "||";
     }
 }
