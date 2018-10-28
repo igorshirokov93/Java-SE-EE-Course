@@ -12,7 +12,7 @@ public class Tracker {
     /**
      * Поле список заявок
      */
-    private final ArrayList<Item> items = new ArrayList<>();
+    private final List<Item> items = new ArrayList<>();
     /**
      * Поле случайного числа для генерации id
      */
@@ -39,7 +39,7 @@ public class Tracker {
         return String.valueOf(System.currentTimeMillis() + RN.nextInt());
     }
 
-    public ArrayList<Item> getAll() {
+    public List<Item> getAll() {
         return this.items;
     }
 
@@ -69,9 +69,9 @@ public class Tracker {
         return res;
     }
 
-    public ArrayList<Item> findByName(String key) {
+    public List<Item> findByName(String key) {
         ListIterator<Item> current = this.items.listIterator();
-        ArrayList<Item> result = new ArrayList<>();
+        List<Item> result = new ArrayList<>();
         Item it;
         while (current.hasNext()) {
             it = current.next();
