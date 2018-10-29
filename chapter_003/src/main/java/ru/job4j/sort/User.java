@@ -6,7 +6,7 @@ package ru.job4j.sort;
  * @since 29.10.2018
  */
 
-public class User implements Comparable {
+public class User implements Comparable<User> {
     /**
      * Поле имя пользователя
      */
@@ -36,8 +36,7 @@ public class User implements Comparable {
      * @return int -1, 0, 1
      */
     @Override
-    public int compareTo(Object o) {
-        User compare = (User) o;
-        return Integer.compare(this.age, compare.getAge());
+    public int compareTo(User o) {
+        return Integer.compare(this.age, o.age);
     }
 }
