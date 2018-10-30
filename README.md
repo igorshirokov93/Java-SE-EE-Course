@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/igorshirokov93/Java-SE-EE-Course.svg?branch=master)](https://travis-ci.org/igorshirokov93/Java-SE-EE-Course) 
+[![codecov](https://codecov.io/gh/igorshirokov93/Java-SE-EE-Course/branch/master/graph/badge.svg)](https://codecov.io/gh/igorshirokov93/Java-SE-EE-Course)
+
 #Репозиторий Игоря Широкова 
 
 Инструменты:
