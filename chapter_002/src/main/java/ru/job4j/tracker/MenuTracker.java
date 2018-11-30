@@ -1,7 +1,9 @@
 package ru.job4j.tracker;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 /**
  * @author Igor Shirokov (mailto:freelancerigor@yandex.ru)
@@ -73,10 +75,18 @@ public class MenuTracker {
      */
     public void show() {
         for (UserAction action : this.actions) {
-            if (action != null) {
-                System.out.println(action.info());
-            }
+            printAction(action);
         }
+    }
+
+    /**
+     * Функция вывода пункта меню на экран.
+     *
+     * @param userAction
+     */
+    private void printAction(UserAction userAction) {
+        Consumer<UserAction> consumer = action -> System.out.println(action.info());
+        consumer.accept(userAction);
     }
 
     public class AddItem extends BaseAction {
