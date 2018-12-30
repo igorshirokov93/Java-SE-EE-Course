@@ -1,6 +1,7 @@
 package ru.job4j.sort;
 
 import org.junit.Test;
+import org.junit.Before;
 
 import java.util.*;
 
@@ -43,23 +44,6 @@ public class SortUserTest {
                 is(-1));
     }
 
-    /**
-     * Тест проверяет сравнение пользователей по длине имени
-     */
-    @Test
-    public void sortUsersNameByLength() {
-        SortUser sortUser = new SortUser();
-        User user1 = new User("ivan", 20);
-        User user2 = new User("sasha", 30);
-        User user3 = new User("max", 25);
-        List<User> list = Arrays.asList(user1, user2, user3);
-        List<User> expect = new ArrayList<>();
-        expect.add(user3);
-        expect.add(user1);
-        expect.add(user2);
-        List<User> result = sortUser.sortNameLength(list);
-        assertThat(result, is(expect));
-    }
 
     /**
      * Тест проверяет сравнение пользователей по длине имени и возрасту

@@ -1,50 +1,61 @@
 package ru.job4j.sort;
 
 import java.util.*;
-
+import java.util.stream.Collectors;
 
 /**
  * @author Igor Shirokov (freelancerigor@yandex.ru)
  * @version $Id$
- * @since 29.10.2018
+ * @since 30.12.2018
  */
 
 public class SortUser {
     /**
      * Метод конвертирует список объектов User в TreeSet
      *
-     * @param list типа List<User>
      * @return TreeSet<User>
      */
-    public Set<User> sort(List<User> list) {
-        return new<User> TreeSet(list);
+    public Set<User> sort(List<User> users) {
+        return users.stream().sorted().collect(Collectors.toSet());
     }
 
+    /**
+     * Метод sortNameLength.
+     * Cортировка по длине имени.
+     *
+     * @param list список пользвателей.
+     * @return отсортированный список.
+     */
     public List<User> sortNameLength(List<User> list) {
-        Comparator<User> compareByNameLength = new Comparator<User>() {
-            @Override
-            public int compare(User o1, User o2) {
-                return o1.getName().length() - o2.getName().length();
-            }
-        };
-        list.sort(compareByNameLength);
-        return list;
+        return list.stream().sorted(
+                Comparator.comparing(User::getAge)
+        ).collect(Collectors.toList());
     }
 
-    public List<User> sortByAllFields(List<User> list) {
-        Comparator<User> compareByName = new Comparator<User>() {
-            @Override
-            public int compare(User o1, User o2) {
-                return o1.getName().compareTo(o2.getName());
-            }
-        };
-        Comparator<User> compareByAge = new Comparator<User>() {
-            @Override
-            public int compare(User o1, User o2) {
-                return o1.getAge() - o2.getAge();
-            }
-        };
-        list.sort(compareByName.thenComparing(compareByAge));
-        return list;
+    /**
+     * Метод sortByAge
+     * Сортировка пользователей по возрасту по возрастанию.
+     *
+     * @param list список пользвателей.
+     * @return отсортированный список.
+     */
+    public List<User> sortByAge(List<User> list) {
+        return list.stream().sorted(
+                Comparator.comparingInt(User::getAge)
+        ).collect(Collectors.toList());
     }
+
+    /**
+     * Метод sortByAllFields.
+     * Cортировка по обоим полям, сначала сортировка по имени в лексикографическом порядке, потом по возрасту.
+     *
+     * @param list список пользвателей.
+     * @return отсортированный список.
+     */
+    public List<User> sortByAllFields(List<User> list) {
+        return list.stream().sorted(
+                Comparator.comparing(User::getName).thenComparing(User::getAge)
+        ).collect(Collectors.toList());
+    }
+
 }

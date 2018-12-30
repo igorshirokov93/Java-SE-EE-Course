@@ -1,12 +1,13 @@
 package ru.job4j.list;
 
+import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @author Igor Shirokov (freelancerigor@yandex.ru)
  * @version $Id$
- * @since 25.10.2018
+ * @since 30.12.2018
  */
 
 public class ConvertMatrix2List {
@@ -16,12 +17,7 @@ public class ConvertMatrix2List {
      * по всем элементам массива и добавить их в List<Integer>
      */
     public List<Integer> toList(int[][] array) {
-        List<Integer> list = new ArrayList<>();
-        for (int[] row : array) {
-            for (int cell : row) {
-                list.add(cell);
-            }
-        }
-        return list;
+        return Arrays.stream(array).flatMapToInt(x -> Arrays.stream(x))
+                .collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
     }
 } 

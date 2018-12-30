@@ -6,10 +6,13 @@ import java.util.ListIterator;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import java.util.*;
+import java.util.stream.Collectors;
+
 /**
  * @author Igor Shirokov (freelancerigor@yandex.ru)
  * @version $Id$
- * @since 25.10.2018
+ * @since 30.12.2018
  */
 
 public class ConvertList2Array {
@@ -29,13 +32,10 @@ public class ConvertList2Array {
     }
 
     public List<Integer> convert(List<int[]> list) {
-        List<Integer> result = new ArrayList<>();
-        for (int[] array : list) {
-            for (int value : array) {
-                result.add(value);
-            }
-        }
-        return result;
+        return list.stream()
+                .flatMapToInt(Arrays::stream)
+                .boxed()
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
 } 

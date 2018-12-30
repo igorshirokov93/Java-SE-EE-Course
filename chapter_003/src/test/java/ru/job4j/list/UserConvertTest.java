@@ -1,10 +1,10 @@
 package ru.job4j.list;
 
 import org.junit.Test;
-
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
-import java.util.ArrayList;
+import java.util.Map;
 import java.util.HashMap;
 
 import static org.hamcrest.core.Is.is;
@@ -15,7 +15,7 @@ import static org.junit.Assert.assertThat;
  *
  * @author Igor Shirokov (freelancerigor@yandex.ru)
  * @version $Id$
- * @since 27.10.2018
+ * @since 30.12.2018
  */
 
 public class UserConvertTest {
@@ -36,7 +36,7 @@ public class UserConvertTest {
         expect.put(111, user2);
         expect.put(222, user1);
         expect.put(333, user3);
-        HashMap<Integer, User> result = userConvert.process(list);
+        Map<Integer, User> result = userConvert.process(list);
         assertThat(result, is(expect));
     }
 } 

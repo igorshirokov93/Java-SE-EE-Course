@@ -2,11 +2,12 @@ package ru.job4j.search;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author Igor Shirokov (freelancerigor@yandex.ru)
  * @version $Id$
- * @since 24.10.2018
+ * @since 30.12.2018
  */
 
 public class PhoneDictionary {
@@ -23,15 +24,9 @@ public class PhoneDictionary {
      * @return Список подощедщих пользователей.
      */
     public List<Person> find(String key) {
-        List<Person> result = new ArrayList<>();
-        for (Person value : this.persons) {
-            if (value.getName().contains(key)
-                    || value.getSurname().contains(key)
-                    || value.getAddress().contains(key)
-                    || value.getPhone().contains(key)) {
-                result.add(value);
-            }
-        }
-        return result;
+        return persons.stream().filter(
+                person -> person.getAddress().contains(key) || person.getPhone().contains(key)
+                        || person.getSurname().contains(key) || person.getName()
+                        .contains(key)).collect(Collectors.toList());
     }
 }
