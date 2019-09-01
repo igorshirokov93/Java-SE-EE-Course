@@ -35,7 +35,7 @@ public class BankTest {
     }
 
     /**
-     * Test addAccountToUser.
+     * Test addAccountToUser
      */
     @Test
     public void whenAddAccountToUser() {
