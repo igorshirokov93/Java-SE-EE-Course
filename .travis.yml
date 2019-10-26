@@ -1,5 +1,8 @@
 # используем язык java. Travis CI поддерживает другие языки тоже.
 language: java
+jdk:
+  - openjdk8
+
 # используем режим обычного пользователя для сборки проекта.
 sudo: false
 
@@ -7,15 +10,14 @@ sudo: false
 # Здесь используется сторонни сервис https://codecov.io/
 after_success:
   - bash <(curl -s https://codecov.io/bash)
+  env:
+    global:
+      - CODECOV_TOKEN="d30cad91-9ebc-413f-a0f6-c275b6298837"
 
 # Отправлять уведомление на почту freelancerigor@yandex.ru если сборка упала
 notifications:
   email:
     recipients:
-    - freelancerigor@yandex.ru
+      -freelancerigor@yandex.ru
     on_success: never # default: change
     on_failure: always # default: always
-
-env:
-  global:
-    - CODECOV_TOKEN="d30cad91-9ebc-413f-a0f6-c275b6298837"
