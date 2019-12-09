@@ -2,13 +2,14 @@ package ru.job4j.condition;
 
 /**
  * @author Igor Shirokov (mailto:freelancerigor@yandex.ru)
- * @version $1$
- * @since 07.12.2019
+ * @version $2$
+ * @since 09.12.2019
  */
 
 public class TrgArea {
     public static double area(double a, double b, double c) {
-        return Math.sqrt(4 * Math.pow(a, 2) * Math.pow(b, 2) - Math.pow(Math.pow(a, 2) + Math.pow(b, 2) - Math.pow(c, 2), 2)) / 4;
+        double p = (a + b + c) / 2;
+        return Math.sqrt(p * (p - a) * (p - b) * (p - c));
     }
 
     public static void main(String[] args) {
