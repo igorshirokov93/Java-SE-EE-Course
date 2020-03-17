@@ -2,16 +2,25 @@ package ru.job4j.loop;
 
 /**
  * @author Igor Shirokov (mailto:freelancerigor@yandex.ru)
- * @version $1$
- * @since 16.03.2020
+ * @version $2$
+ * @since 17.03.2020
  */
 
 public class Counter {
     public static int sum(int start, int finish) {
         int sum = 0;
-        int i;
-        for (i = start; i <= finish; i++) {
+        for (int i = start; i <= finish; i++) {
             sum = sum + i;
+        }
+        return sum;
+    }
+
+    public static int sumByEven(int start, int finish) {
+        int sum = 0;
+        for (int i = start; i <= finish; i++) {
+            if (i % 2 == 0) {
+                sum += i;
+            }
         }
         return sum;
     }
@@ -23,5 +32,12 @@ public class Counter {
         System.out.println(sum(5, 17));
         System.out.println(sum(-4, 6));
         System.out.println(sum(-1, 2));
+
+        System.out.println(sumByEven(0, 10));
+        System.out.println(sumByEven(3, 8));
+        System.out.println(sumByEven(1, 1));
+        System.out.println(sumByEven(7, 19));
+        System.out.println(sumByEven(-3, 11));
+        System.out.println(sumByEven(-6, 2));
     }
 }
