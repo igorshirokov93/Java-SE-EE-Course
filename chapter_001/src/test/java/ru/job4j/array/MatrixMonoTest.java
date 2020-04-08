@@ -55,4 +55,53 @@ public class MatrixMonoTest {
         boolean result = MatrixMono.monoHorizontal(input, 3);
         assertThat(result, is(true));
     }
+
+    @Test
+    public void whenHasMonoVertical() {
+        char[][] input = {
+                {' ', ' ', 'X'},
+                {' ', ' ', 'X'},
+                {' ', ' ', 'X'},
+        };
+        boolean result = MatrixMono.monoVertical(input, 2);
+        assertThat(result, is(true));
+    }
+
+    @Test
+    public void whenHasMonoVertical2() {
+        char[][] input = {
+                {' ', ' ', ' ', ' ', 'X', ' '},
+                {' ', ' ', ' ', ' ', 'X', ' '},
+                {' ', ' ', ' ', ' ', 'X', ' '},
+                {' ', ' ', ' ', ' ', 'X', ' '},
+                {' ', ' ', ' ', ' ', 'X', ' '},
+                {' ', ' ', ' ', ' ', 'X', ' '},
+        };
+        boolean result = MatrixMono.monoVertical(input, 4);
+        assertThat(result, is(true));
+    }
+
+    @Test
+    public void whenHasMonoVertical3() {
+        char[][] input = {
+                {' ', 'X', ' '},
+                {' ', 'X', ' '},
+                {' ', 'X', ' '},
+                {' ', 'X', ' '},
+                {' ', 'X', ' '},
+        };
+        boolean result = MatrixMono.monoVertical(input, 1);
+        assertThat(result, is(true));
+    }
+
+    @Test
+    public void whenHasMonoVertical4() {
+        char[][] input = {
+                {' ', ' ', ' ', 'X', ' ', ' '},
+                {' ', ' ', ' ', 'X', ' ', ' '},
+                {' ', ' ', ' ', 'X', ' ', ' '},
+        };
+        boolean result = MatrixMono.monoVertical(input, 3);
+        assertThat(result, is(true));
+    }
 }
