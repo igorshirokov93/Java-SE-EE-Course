@@ -104,4 +104,43 @@ public class MatrixMonoTest {
         boolean result = MatrixMono.monoVertical(input, 3);
         assertThat(result, is(true));
     }
+
+    @Test
+    public void whenDiagonal() {
+        char[][] input = {
+                {'X', ' ', ' '},
+                {' ', 'X', ' '},
+                {' ', ' ', 'X'},
+        };
+        char[] result = MatrixMono.extractDiagonal(input);
+        char[] expect = {'X', 'X', 'X'};
+        assertThat(result, is(expect));
+    }
+
+    @Test
+    public void whenDiagonal2() {
+        char[][] input = {
+                {'X', ' ', ' ', ' '},
+                {' ', 'X', ' ', ' '},
+                {' ', ' ', 'X', ' '},
+                {' ', ' ', ' ', 'X'},
+        };
+        char[] result = MatrixMono.extractDiagonal(input);
+        char[] expect = {'X', 'X', 'X', 'X'};
+        assertThat(result, is(expect));
+    }
+
+    @Test
+    public void whenDiagonal3() {
+        char[][] input = {
+                {'X', ' ', ' ', ' ', ' '},
+                {' ', 'X', ' ', ' ', ' '},
+                {' ', ' ', 'X', ' ', ' '},
+                {' ', ' ', ' ', 'X', ' '},
+                {' ', ' ', ' ', ' ', 'X'},
+        };
+        char[] result = MatrixMono.extractDiagonal(input);
+        char[] expect = {'X', 'X', 'X', 'X', 'X'};
+        assertThat(result, is(expect));
+    }
 }
