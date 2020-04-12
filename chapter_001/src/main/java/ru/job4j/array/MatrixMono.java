@@ -2,8 +2,8 @@ package ru.job4j.array;
 
 /**
  * @author Igor Shirokov (mailto:freelancerigor@yandex.ru)
- * @version $2$
- * @since 08.04.2020.
+ * @version $4$
+ * @since 12.04.2020.
  */
 
 public class MatrixMono {
@@ -35,5 +35,16 @@ public class MatrixMono {
             rsl[i] = board[i][i];
         }
         return rsl;
+    }
+
+    public static boolean isWin(char[][] board) {
+        boolean result = false;
+        for (int index = 0; index < 5; index++) {
+            if (monoHorizontal(board, index) || monoVertical(board, index)) {
+                result = true;
+                break;
+            }
+        }
+        return result;
     }
 }
