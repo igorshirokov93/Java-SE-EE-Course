@@ -1,26 +1,45 @@
 package ru.job4j.condition;
 
+import static java.lang.Math.sqrt;
+import static java.lang.Math.pow;
+
 /**
  * @author Igor Shirokov (mailto:freelancerigor@yandex.ru)
- * @version $2$
- * @since 05.12.2019
+ * @version $3$
+ * @since 28.05.2020
  */
 
 public class PointTwo {
-    public static double distance(int x1, int y1, int x2, int y2) {
-        return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+
+    /**
+     * Это поле объекта. Оно доступно только конкретному объекту.
+     */
+    private int x;
+
+    /**
+     * И это поле объекта. Оно доступно только конкретному объекту.
+     */
+    private int y;
+
+    /**
+     * Для инициализации начального состояния создадим конструктор, который принимает два параметра.
+     */
+    public PointTwo(int first, int second) {
+        this.x = first;
+        this.y = second;
+    }
+
+    /**
+     * Метод distance должен принимать переменную Point.
+     */
+    public double distance(PointTwo that) {
+        return sqrt(pow(this.x - that.x, 2) + pow(this.y - that.y, 2));
     }
 
     public static void main(String[] args) {
-        double result = distance(0, 0, 2, 0);
-        System.out.println("result (0, 0) to (2, 0) " + result);
-        double result1 = distance(33, 0, 0, 44);
-        System.out.println("result (33, 0) to (0, 44) " + result1);
-        double result2 = distance(0, 11, 60, 0);
-        System.out.println("result (0, 11) to (60, 0) " + result2);
-        double result3 = distance(4, 3, 5, 2);
-        System.out.println("result (4, 3) to (5, 2) " + result3);
-        double result4 = distance(-2, -3, -6, 0);
-        System.out.println("result (-2, -3) to (-6, 0) " + result4);
+        PointTwo a = new PointTwo(4, 3);
+        PointTwo b = new PointTwo(5, 2);
+        double dist = a.distance(b);
+        System.out.println(dist);
     }
 }
